@@ -3,16 +3,15 @@ Xin chào mọi người, mình là Ga Đô. Sau một thời gian học về Ru
 
 # Goals
 
-- Áp dụng được các concept cơ bản trong Rust để xây dựng được một command-line interface application.
-- 
+Áp dụng được các concept cơ bản trong Rust để xây dựng được một Command-line Interface Application.
 
 # To-do list
 
-To-do list được dùng để lưu trữ danh sách các công việc mà chúng ta muốn thực hiện và có thể theo dõi quá trình thực hiện các công việc này. Giả sử chúng ta muốn triển khai một danh sách công việc cần làm mà lưu trữ các nhiệm vụ khác nhau, với mỗi nhiệm vụ ở trong một trong ba trạng thái sau: Cần làm (To do), Đang tiến hành (In progress), và Hoàn thành (Done). Ứng dụng của chúng ta sẽ nhận trạng thái (state) và tên của công việc dưới dạng command-line agrument.
+To-do list được dùng để lưu trữ danh sách các công việc mà chúng ta muốn thực hiện và có thể theo dõi quá trình thực hiện các công việc này. Giả sử chúng ta muốn triển khai một danh sách công việc cần làm, ta cần lưu các công việc khác nhau, với mỗi công việc sẽ ở trong một trong ba trạng thái sau: Cần làm (To do), Đang tiến hành (In progress), và Hoàn thành (Done). Ứng dụng của chúng ta sẽ nhận trạng thái (state) và tên của công việc dưới dạng command-line agrument.
 
 # Implementing To-do list
 ## Creating the project
-Đầu tiên, ta sẽ tạo một project có tên là todo-list bằng lệnh sau
+Đầu tiên, ta sẽ tạo một project có tên là todo-list bằng lệnh sau:
 
 ```bash
 cargo new todo-list
@@ -33,19 +32,19 @@ fn main() {
 }
 ```
 
-Trong đoạn code trên, ta mong đợi user nhập hai command-line agrument cùng với lệnh `cargo run`. Đối số đầu tiên biểu thị một hành động (action), và đối số thứ hai biểu thị một công việc (task) cần được thêm vào danh sách công việc cần làm (To-do list). Chúng ta sử dụng `std::env::args()` để lấy các command-line agrument. Hàm `std::env::args()` trả về một `Args` iterator, ta sẽ nhóm thành một vector để lấy danh sách các đối số. Đối số đầu tiên là chính chương trình. Chúng ta quan tâm đến đối số thứ hai và thứ ba, biểu thị một hành động (action) và một công việc (task) tương ứng. Các giá trị có thể của hành động sẽ là `add`, `start`, hoặc `done`. Giá trị của `add` biểu thị một công việc mới (new task) cần được thêm vào to-do list. Giá trị của `start` dùng để cập nhật trạng thái của công việc đã có trong to-do list thành trạng thái đang thực hiện (`In Progress`). Giá trị của `done` cho phép chương trình của chúng ta cập nhật trạng thái của một công việc trong to-do list thành đã hoàn thành (`Done`). Trong trường hợp này, chúng ta không xóa công việc vì việc theo dõi các công việc đã hoàn thành có thể sẽ hữu ích. Nếu user không truyền tất cả các đối số, chương trình sẽ raise `panic` với thông báo `Too less arguments passed!` như dưới đây:
+Trong đoạn code trên, ta mong đợi user nhập hai command-line agrument cùng với lệnh `cargo run`. Đối số đầu tiên biểu thị một hành động (action), và đối số thứ hai biểu thị một công việc (task) cần được thêm vào danh sách công việc cần làm (To-do list). Chúng ta sử dụng `std::env::args()` để lấy các command-line agrument. Hàm `std::env::args()` trả về một `Args` iterator, ta sẽ nhóm thành một vector để lấy danh sách các đối số. Đối số đầu tiên là chính chương trình. Chúng ta quan tâm đến đối số thứ hai và thứ ba, biểu thị một hành động (action) và một công việc (task) tương ứng. Các giá trị có thể của hành động sẽ là `add`, `start`, hoặc `done`. Giá trị của `add` biểu thị một công việc mới (new task) cần được thêm vào to-do list. Giá trị của `start` dùng để cập nhật trạng thái của công việc đã có trong to-do list thành trạng thái đang thực hiện (`In Progress`). Giá trị của `done` cho phép chương trình của chúng ta cập nhật trạng thái của một công việc trong to-do list thành đã hoàn thành (`Done`). Chương trình của chúng ta sẽ không xóa công việc đã hoàn thành vì việc theo dõi chúng có thể sẽ hữu ích. Nếu user không truyền tất cả các đối số, chương trình sẽ raise `panic` với thông báo `Too less arguments passed!` như dưới đây:
 
 ![alt text](./img/raise_panic.png)
 
 ## Defining the To-do structure
 
-Ta sẽ định nghĩa một structure tên là `Todo` chứa một `hashmap` lưu trữ các task và state tương ứng của chúng như sau:
+Ta sẽ định nghĩa một struct tên là `Todo` chứa một `hashmap` lưu trữ các task và state tương ứng của chúng như sau:
 
 ## Implementing methods of Todo struct
 
 Các bước thực hiện như sau:
 
-1. Định nghĩa một số method tương ứng với struct `Todo`. Cụ thể, ta sẽ định nghĩa các method `new()`, `insert()`, `save()`, `start()` và `done()` cho struct của chúng ta. Trong method `new()`, ta cần mở một tệp văn bản có tên là `todo.db` để lưu các task và state của chúng trong các lần chạy khác nhau của ứng dụng. Với lần chạy đầu tiên, một tệp mới sẽ được tạo ra. Trong các lần chạy tiếp theo, nội dung của tệp bao gồm các task và state của chúng được đọc và thêm vào `hashmap` trong struct `Todo` như sau:
+1. Định nghĩa một số method tương ứng với struct `Todo`. Cụ thể, ta sẽ định nghĩa các method `new()`, `insert()`, `save()`, `start()` và `done()` cho struct của chúng ta. Trong method `new()`, ta cần mở một file có tên là `todo.db` để lưu các task và state của chúng trong các lần chạy khác nhau của ứng dụng. Với lần chạy đầu tiên, một tệp mới sẽ được tạo ra. Trong các lần chạy tiếp theo, nội dung của tệp bao gồm các task và state của chúng được đọc và thêm vào `hashmap` trong struct `Todo` như sau:
 
     ```rs
     impl Todo {
