@@ -165,5 +165,3 @@ Ta có thể thấy rằng chức năng thêm task của chương trình hoạt 
 OK! All done! Khi ta thử start một task chưa có trong To-do list, chương trình sẽ báo lỗi đúng như ta đã kiểm soát.
 
 File database sẽ có cấu trúc như dưới đây:
-
-![alt text](./img/db.png)
