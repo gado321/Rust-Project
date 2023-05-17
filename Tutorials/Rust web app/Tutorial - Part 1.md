@@ -124,13 +124,13 @@ Ok! Ta đã thực hiện quá trình xong setup các công cụ cần thiết. 
     <!DOCTYPE html>
     <html>
         <head>
-            <meta charset=”utf-8”>
+            <meta charset="utf-8">
             <title>Hello wasm-pack!</title>
         </head>
         <body>
             <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.
             </noscript>
-            <script src=”./bootstrap.js”></script>
+            <script src="./bootstrap.js"></script>
         </body>
     </html>
     ```
