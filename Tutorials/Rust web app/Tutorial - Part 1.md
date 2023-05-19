@@ -1,6 +1,6 @@
 # Introduction
 
-Xin chào mọi người! Hôm nay mình sẽ tiếp tục thực hiện project tiếp theo. Chúng ta sẽ phát triển một ứng dụng web để xác thực tên người dùng (username ) và mật khẩu (password). Nếu username và password khớp, chương trình sẽ hiển thị thông báo đăng nhập thành công. Ngược lại, chương trình sẽ hiển thị thông báo đăng nhập thất bại. Ứng dụng có thể chạy trên trình duyệt và sẽ có UI cơ bản, như trường username và password, và các button như login, reset và logout.
+Xin chào mọi người! Hôm nay mình sẽ tiếp tục thực hiện project tiếp theo. Chúng ta sẽ phát triển một ứng dụng web để xác thực tên người dùng (username) và mật khẩu (password). Nếu username và password khớp, chương trình sẽ hiển thị thông báo đăng nhập thành công. Ngược lại, chương trình sẽ hiển thị thông báo đăng nhập thất bại. Ứng dụng có thể chạy trên trình duyệt và sẽ có UI cơ bản, như trường username và password, và các button như login, reset và logout.
 
 # Set up environment
 ## wasm-pack
