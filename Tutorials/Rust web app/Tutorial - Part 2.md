@@ -46,7 +46,7 @@ Các bước thực hiện như sau:
 
 ![alt text](./img/wasm_login_alert.png)
 
-Tiếp theo, ta thiết kết UI trong `www/index.html`. UI sẽ gồm một form chứa hai trường `username` và `password` và hai button `Login` và `Reset`:
+Tiếp theo, ta design UI trong `www/index.html`. UI sẽ gồm một form chứa hai trường `username` và `password` và hai button `Login` và `Reset`:
 
 ```html
 <!DOCTYPE html>
