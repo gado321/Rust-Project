@@ -46,7 +46,7 @@ Các bước thực hiện như sau:
 
 1. Định nghĩa một số method tương ứng với struct `Todo`. Cụ thể, ta sẽ định nghĩa các method `new()`, `insert()`, `save()`, `start()` và `done()` cho struct của chúng ta. Trong method `new()`, ta cần mở một file có tên là `todo.db` để lưu các task và state của chúng trong các lần chạy khác nhau của ứng dụng. Với lần chạy đầu tiên, một tệp mới sẽ được tạo ra. Trong các lần chạy tiếp theo, nội dung của tệp bao gồm các task và state của chúng được đọc và thêm vào `hashmap` trong struct `Todo` như sau:
 
-    ```rs
+    ```rust
     impl Todo {
         fn new() -> Result<Todo, std::io::Error> {
             let mut f = std::fs::OpenOptions::new()
